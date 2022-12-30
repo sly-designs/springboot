@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class NurseService {
 
@@ -18,5 +22,12 @@ public class NurseService {
 
     public int addNurse(Nurse nurse){
         return nurseDao.insertNurse(nurse);
+    }
+
+    public List<Nurse> getAllNurses(){
+        return nurseDao.selectAllNurses();
+    }
+    public Optional<Nurse> getNurseById(UUID id) {
+        return nurseDao.selectNurseById(id);
     }
 }

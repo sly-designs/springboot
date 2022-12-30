@@ -3,10 +3,10 @@ package com.migos.migos.api;
 import com.migos.migos.model.Nurse;
 import com.migos.migos.service.NurseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("api/v1/nurse")
 @RestController
@@ -22,5 +22,15 @@ public class NurseController {
     @PostMapping
     public void addNurse(@RequestBody Nurse nurse){
         nurseService.addNurse(nurse);
+    }
+    @GetMapping
+    public List<Nurse> getAllNurses(){
+        return nurseService.getAllNurses();
+    }
+
+    @GetMapping(path = "{id}")
+    public Nurse getNurseById(@PathVariable("id") UUID id) {
+        return nurseService.getNurseById(id)
+                .orElse(null);
     }
 }
