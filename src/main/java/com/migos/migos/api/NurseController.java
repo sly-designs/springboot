@@ -33,4 +33,13 @@ public class NurseController {
         return nurseService.getNurseById(id)
                 .orElse(null);
     }
+    @DeleteMapping(path = "{id}")
+    public void deleteNurseById(@PathVariable("id") UUID id) {
+        nurseService.deleteNurse(id);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateNurse(@PathVariable("id") UUID id, @RequestBody Nurse nurseToUpdate) {
+        nurseService.updateNurse(id, nurseToUpdate);
+    }
 }

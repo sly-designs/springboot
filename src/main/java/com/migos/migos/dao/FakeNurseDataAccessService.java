@@ -32,11 +32,25 @@ public class FakeNurseDataAccessService implements NurseDao{
 
     @Override
     public int deleteNurseById(UUID id) {
-        return 0;
+       Optional<Nurse> nurseMaybe = selectNurseById(id);
+       if (nurseMaybe.isEmpty()) {
+           return 0;
+       }
+        DB.remove(nurseMaybe.get());
+        return 1;
     }
 
     @Override
-    public int updateNurseById(UUID id, Nurse nurse) {
-        return 0;
+    public int updateNurseById(UUID id, Nurse update) {
+        return selectNurseById(id)
+                .map(nurse -> {
+                    int indexOfNurseToUpdate = DB.indexOf(nurse);
+                    if (indexOfNurseToUpdate >= 0) {
+                        DB.set(indexOfNurseToUpdate, new Nurse(id, update.getName()));
+                        return 1;
+                    }
+                    return 0;
+                })
+                .orElse(0);
     }
 }

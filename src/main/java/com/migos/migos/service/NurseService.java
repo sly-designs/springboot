@@ -30,4 +30,10 @@ public class NurseService {
     public Optional<Nurse> getNurseById(UUID id) {
         return nurseDao.selectNurseById(id);
     }
+    public int deleteNurse(UUID id) {
+        return nurseDao.deleteNurseById(id);
+    }
+    public int updateNurse(UUID id, Nurse newNurse) {
+        return nurseDao.updateNurseById(id, newNurse);
+    }
 }
