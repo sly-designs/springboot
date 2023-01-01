@@ -16,7 +16,7 @@ public class NurseService {
     private final NurseDao nurseDao;
 
     @Autowired
-    public NurseService(@Qualifier("fakeDao") NurseDao nurseDao) {
+    public NurseService(@Qualifier("postgres") NurseDao nurseDao) {
         this.nurseDao = nurseDao;
     }
 

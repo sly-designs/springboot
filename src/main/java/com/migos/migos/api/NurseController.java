@@ -2,6 +2,8 @@ package com.migos.migos.api;
 
 import com.migos.migos.model.Nurse;
 import com.migos.migos.service.NurseService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,7 @@ public class NurseController {
     }
 
     @PostMapping
-    public void addNurse(@RequestBody Nurse nurse){
+    public void addNurse(@Valid @NotNull @RequestBody Nurse nurse){
         nurseService.addNurse(nurse);
     }
     @GetMapping
@@ -39,7 +41,7 @@ public class NurseController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateNurse(@PathVariable("id") UUID id, @RequestBody Nurse nurseToUpdate) {
+    public void updateNurse(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Nurse nurseToUpdate) {
         nurseService.updateNurse(id, nurseToUpdate);
     }
 }

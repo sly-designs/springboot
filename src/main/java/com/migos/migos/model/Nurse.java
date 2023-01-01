@@ -1,11 +1,14 @@
 package com.migos.migos.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 
+//import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public class Nurse {
     private final UUID id;
+    @NotBlank
     private final String name;
 
     public Nurse(@JsonProperty("id") UUID id,
